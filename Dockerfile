@@ -33,11 +33,6 @@ RUN mkdir -p $CONDA_DIR && \
     /bin/bash /Miniconda3-latest-Linux-x86_64.sh -f -b -p $CONDA_DIR && \
     rm Miniconda3-latest-Linux-x86_64.sh
 
-ENV NB_USER keras
-ENV NB_UID 1000
-
-RUN echo "export NB_USER=keras" >> /etc/profile
-RUN echo "export NB_UID=1000" >> /etc/profile
 
 RUN echo "export LD_LIBRARY_PATH=/usr/local/cuda/lib64:/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH" >> /etc/profile
 RUN echo "export CPATH=/usr/include:/usr/include/x86_64-linux-gnu:/usr/local/cuda/include:$CPATH" >> /etc/profile
@@ -46,18 +41,14 @@ RUN echo "export CUDA_HOME=/usr/local/cuda" >> /etc/profile
 RUN echo "export CPLUS_INCLUDE_PATH=$CPATH" >> /etc/profile
 RUN echo "export KERAS_BACKEND=tensorflow" >> /etc/profile
 
-RUN useradd -m -s /bin/bash -N -u $NB_UID $NB_USER && \
-    mkdir -p $CONDA_DIR && \
-    chown keras $CONDA_DIR -R  
 
-USER keras
+USER root
 
-RUN mkdir -p /home/keras/notebook
 
 # Python
 ARG python_version=3.7
 
-COPY ControlGAN /home/keras/ControlGAN
+
 
 RUN conda install -y python=${python_version} && \
     pip install --upgrade pip && \
@@ -79,8 +70,12 @@ ENV CUDA_HOME /usr/local/cuda
 ENV CPLUS_INCLUDE_PATH $CPATH
 ENV KERAS_BACKEND tensorflow
 
-WORKDIR /home/keras/ControlGAN/code
+COPY ControlGAN /root/ControlGAN
 
-EXPOSE 5000
+WORKDIR /root/ControlGAN/code
 
+
+EXPOSE 5000 8888
+
+#CMD jupyter notebook --port=8888 --ip=0.0.0.0 --no-browser
 CMD FLASK_APP=server.py flask run --host=0.0.0.0

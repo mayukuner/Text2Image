@@ -1,12 +1,14 @@
 # Controllable Text-to-Image Generation
 
-## Text to Image --- the Task
+## Text to Image -- the Task
 
 The task we focus on is the text to image generation. In this task, we want the model to generate realistic images that semantically match given text descriptions. We built a mobile app as the frontend and started a server based on the ControlGan model as the backend.
 
+Input: A sentence to to describe the desired generrated image.
+Output: An image that semantically match given text descriptions.
 
 ## Deliverables
-* React-Native App
+* [React-Native App](https://github.com/shangmy/text2image_app/)
 * Pretrained DAMSM and ControlGAN models
 * [One archive file containing source codes and datasets for training and deploying as the backend](https://drive.google.com/file/d/1UTAmiyOG96Nx9Kreh4E_n1UA_qfb9q9S/view?usp=sharing)
 * [One Docker image ready to deploy](https://hub.docker.com/repository/docker/mayukuner/text2img)
@@ -67,7 +69,10 @@ python main.py --cfg cfg/eval_coco.yml --gpu 0
 ```
 
 
-## Text To Image --- The App
+## Text To Image -- The App
+
+
+![](imgs/controlgan.gif)
 
 ### Server side
 
@@ -118,10 +123,19 @@ The corresponding output for the example input in the above table is:
 
 ![](imgs/example_output.png)
 
+### Client side
 
-### Demo
 
-![](imgs/controlgan.gif)
+Our React-Native App is running on the Expo. 
+
+```
+cd text2image_app
+yarn install
+expo start
+```
+
+Download an Expo Client. Open Expo Client on your device. Scan the QR code printed by expo start with Expo Client (Android) or Camera (iOS). You may have to wait a minute while your project bundles and loads for the first time.
+
 
 
 ## Reference
