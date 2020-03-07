@@ -7,6 +7,7 @@ The task we focus on is the text to image generation. In this task, we want the 
 
 ## Deliverables
 * React-Native App
+* Pretrained DAMSM and ControlGAN models
 * [One archive file containing source codes and datasets for training and deploying as the backend](https://drive.google.com/file/d/1UTAmiyOG96Nx9Kreh4E_n1UA_qfb9q9S/view?usp=sharing)
 * [One Docker image ready to deploy](https://hub.docker.com/repository/docker/mayukuner/text2img)
 * [One Dockerfile](Dockerfile)
