@@ -120,7 +120,7 @@ The corresponding output for the example input in the above table is:
 
 ### Demo
 
-![](https://codimd.s3.shivering-isles.com/demo/uploads/upload_6803afedce3b08081d432b7ef103f5d4.gif)
+![](imgs/controlgan.gif)
 
 
 ## Reference
